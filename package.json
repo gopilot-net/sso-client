@@ -1,0 +1,14 @@
+{
+  "name": "@gopilot/sso-client",
+  "version": "0.0.1",
+  "description": "Client for connecting to GoPilot SSO",
+  "main": "gopilot-sso.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GoPilot",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
