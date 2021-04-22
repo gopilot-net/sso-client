@@ -21,7 +21,7 @@ module.exports = class DefaultSSOAdapter extends Base {
              // req.headers['origin'] = req.get('host')
  const url = require('url');
    const oauthCode = url.parse(req.url,true).query.code;
-        logging.info(`oauth code:${oauthCode}`);
+        // logging.info(`oauth code:${oauthCode}`);
         if (oauthCode != null) {
          logging.info('Received valid code');
             resolve(oauthCode);
