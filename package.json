@@ -1,13 +1,30 @@
 {
   "name": "@gopilot/sso-client",
   "version": "0.0.1",
-  "description": "Client for connecting to GoPilot SSO",
+  "description": "Ghost Single Sign On Adapter using GoPilot",
+  "keywords": [
+    "ghost",
+    "sso",
+    "adapter",
+    "node"
+  ],
+  "homepage": "https://gopilot.net",
   "main": "gopilot-sso.js",
+   "repository": {
+    "type": "git",
+    "url": "git@github.com:gopilot-net/sso-client.git"
+  },
+  "bugs": {
+    "email" : "support@gopilot.net"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "GoPilot",
-  "license": "ISC",
+  "author": {
+    "name": "Mark Kose",
+    "email" : "mark@gopilot.net"
+  },
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1"
   }
