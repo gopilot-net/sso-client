@@ -56,8 +56,8 @@ if (adminUrl) {
 // console.log(`redirect uri:${redirect_uri}`);
 const axios = require('axios');
 axios.post(`${oauthConfig.domain}/oauth/token`, {
-  client_id: oauthConfig.key,
-  client_secret: oauthConfig.secret,
+  client_id: oauthConfig.clientId,
+  client_secret: oauthConfig.clientSecret,
     code:code,
     grant_type:'authorization_code',
     redirect_uri,
