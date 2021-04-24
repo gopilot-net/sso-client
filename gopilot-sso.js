@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const logging = require(`${ghostServerDir}/core/shared/logging`);
 const UserModel = require(`${ghostServerDir}/core/server/models/user`).User;
 const config = require(`${ghostServerDir}/core/shared/config`);
-
+const axios = require(`${ghostServerDir}/node_modules/axios`);
 module.exports = class DefaultSSOAdapter extends Base {
     constructor(config) {
        super();
@@ -54,7 +54,6 @@ if (adminUrl) {
   redirect_uri = `${config.get('url').replace(/\/+$/, "")}/ghost/`;
 }
 // console.log(`redirect uri:${redirect_uri}`);
-const axios = require('axios');
 axios.post(`${oauthConfig.domain}/oauth/token`, {
   client_id: oauthConfig.clientId,
   client_secret: oauthConfig.clientSecret,
