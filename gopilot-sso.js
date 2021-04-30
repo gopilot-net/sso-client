@@ -18,10 +18,11 @@ module.exports = class DefaultSSOAdapter extends Base {
         this.redirect_uri = `${adminUrl.replace(/\/+$/, "")}/ghost/`;
         this.origin = adminUrl;
       }else {
-        url = ghostConfig.get('url');
+        const url = ghostConfig.get('url');
         this.redirect_uri = `${url.replace(/\/+$/, "")}/ghost/`;
         this.origin = url;
       }
+      if (this.origin.endsWith('/')) this.origin = this.origin.substring(0,this.origin.length - 1);
     }
 
 
