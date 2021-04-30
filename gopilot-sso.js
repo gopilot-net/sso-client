@@ -1,14 +1,27 @@
 const ghostServerDir=require.main.path
 const Base = require(`${ghostServerDir}/core/server/adapters/sso/Base`);
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const logging = require(`${ghostServerDir}/core/shared/logging`);
 const UserModel = require(`${ghostServerDir}/core/server/models/user`).User;
-const config = require(`${ghostServerDir}/core/shared/config`);
+const ghostConfig = require(`${ghostServerDir}/core/shared/config`);
 const axios = require(`${ghostServerDir}/node_modules/axios`);
 module.exports = class DefaultSSOAdapter extends Base {
     constructor(config) {
        super();
       this.config=config;
+      
+      // Configure URLs
+      const adminUrl = ghostConfig.get('admin:url');
+      // console.log(`admin url:${adminUrl}`);
+      // let redirect_uri='';
+      if (adminUrl) {
+        this.redirect_uri = `${adminUrl.replace(/\/+$/, "")}/ghost/`;
+        this.origin = adminUrl;
+      }else {
+        url = ghostConfig.get('url');
+        this.redirect_uri = `${url.replace(/\/+$/, "")}/ghost/`;
+        this.origin = url;
+      }
     }
 
 
@@ -17,7 +30,8 @@ module.exports = class DefaultSSOAdapter extends Base {
         return new Promise(async (resolve, reject) => {
             try{
            //  console.log(req.protocol,req.host);
-             req.headers['origin'] = `${req.protocol}://${req.hostname}:${req.socket.localPort}`;
+             //req.headers['origin'] = `${req.protocol}://${req.hostname}:${req.socket.localPort}`;
+             req.headers['origin'] = this.origin;
              // req.headers['origin'] = req.get('host')
  const url = require('url');
    const oauthCode = url.parse(req.url,true).query.code;
@@ -45,7 +59,7 @@ module.exports = class DefaultSSOAdapter extends Base {
 const oauthConfig=this.config;
 // console.log("Ghost SSO config");
 // console.log(this.config);
-const adminUrl = config.get('admin:url');
+/*const adminUrl = config.get('admin:url');
 // console.log(`admin url:${adminUrl}`);
 let redirect_uri='';
 if (adminUrl) {
@@ -53,13 +67,14 @@ if (adminUrl) {
 }else {
   redirect_uri = `${config.get('url').replace(/\/+$/, "")}/ghost/`;
 }
+*/
 // console.log(`redirect uri:${redirect_uri}`);
 axios.post(`${oauthConfig.domain}/oauth/token`, {
   client_id: oauthConfig.clientId,
   client_secret: oauthConfig.clientSecret,
     code:code,
     grant_type:'authorization_code',
-    redirect_uri,
+    redirect_uri: this.redirect_uri,
   },{
       headers: {'Accept': 'application/json'},
   })
