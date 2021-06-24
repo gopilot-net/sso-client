@@ -16,13 +16,14 @@ module.exports = class DefaultSSOAdapter extends Base {
       // let redirect_uri='';
       if (adminUrl) {
         this.redirect_uri = `${adminUrl.replace(/\/+$/, "")}/ghost/`;
-        this.origin = adminUrl;
+        //this.origin = adminUrl;
+        this.origin = adminUrl.match(/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/)[0];
       }else {
         const url = ghostConfig.get('url');
         this.redirect_uri = `${url.replace(/\/+$/, "")}/ghost/`;
-        this.origin = url;
+        this.origin = url.match(/^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/)[0];
       }
-      if (this.origin.endsWith('/')) this.origin = this.origin.substring(0,this.origin.length - 1);
+      //if (this.origin.endsWith('/')) this.origin = this.origin.substring(0,this.origin.length - 1);
     }
 
 
