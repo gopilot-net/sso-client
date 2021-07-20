@@ -1,7 +1,7 @@
 const ghostServerDir=require.main.path
 const Base = require(`${ghostServerDir}/core/server/adapters/sso/Base`);
 // const bodyParser = require('body-parser');
-const logging = require(`${ghostServerDir}/core/shared/logging`);
+const logging = require(`${ghostServerDir}/node_modules/@tryghost/logging`);
 const UserModel = require(`${ghostServerDir}/core/server/models/user`).User;
 const ghostConfig = require(`${ghostServerDir}/core/shared/config`);
 const axios = require(`${ghostServerDir}/node_modules/axios`);
