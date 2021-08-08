@@ -1,7 +1,7 @@
 # GoPilot
 
 
-** GoPilot **  https://gopilot.net is your copilot for Ghost. 
+GoPilot  https://gopilot.net is your copilot for Ghost. 
 
 One of the features of GoPilot is Single Sign On for Ghost CMS. 
 
