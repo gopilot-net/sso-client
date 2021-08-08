@@ -1,8 +1,8 @@
-# GoPilot SSO
+# GoPilot
 
 
-**GoPilot SSO**  https://gopilot.net is a Single Sign On solution for Ghost CMS. 
+**GoPilot **  https://gopilot.net is your copilot for Ghost. 
 
-This package is used to configure Ghost to communicate with GoPilot backend
+One of the features of GoPilot is Single Sign On for Ghost CMS. 
 
-For 
+This package is used to configure Ghost to communicate with GoPilot SSO backend
