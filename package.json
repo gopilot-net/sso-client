@@ -1,7 +1,7 @@
 {
   "name": "@gopilot/sso-client",
-  "version": "0.0.3",
-  "description": "Ghost Single Sign On Adapter using GoPilot",
+  "version": "1.0.0",
+  "description": "Ghost Single Sign On using GoPilot",
   "keywords": [
     "ghost",
     "sso",
@@ -9,7 +9,7 @@
     "node"
   ],
   "homepage": "https://gopilot.net",
-  "main": "gopilot-sso.js",
+  "main": "install.js",
    "repository": {
     "type": "git",
     "url": "git@github.com:gopilot-net/sso-client.git"
