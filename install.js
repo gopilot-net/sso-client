@@ -14,7 +14,7 @@ fs.copyFile(siteAppPath, siteAppPath+'.org', (err) => {
   const GoPilotSSOEntry = `
   
     // START GoPilot-Members-SSO
-    siteApp.use('/gopilot-sso/',require('/opt/ghost/ghost4.7/content/adapters/sso/gopilot-members-sso.js').loginMember());
+    siteApp.use('/gopilot-sso/',require('../../../../../../content/adapters/sso/gopilot-members-sso.js').loginMember());
     // END GoPilot-Members-SSO
 `;
   const data = fs.readFileSync(siteAppPath, 'utf-8');
