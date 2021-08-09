@@ -12,7 +12,9 @@ module.exports.loginMember = () => {
     const goPilotSSOConfig = ghostConfig.get().adapters.sso['gopilot-sso'];
     return (req,res,next)=> {
     logging.info('Starting gopilot login member middleware');
-    const oauthCode = url.parse(req.url,true).query.code;
+      const parsedUrl = url.parse(req.url, true)
+      const siteURI = req.originalUrl.replace(/gopilot-sso.*/i, '');
+      const oauthCode = parsedUrl.query.code;
     if (oauthCode != null) {
          logging.info('Received valid code');
 const ghostUrl = ghostConfig.get('url');
@@ -47,23 +49,23 @@ axios.post(`${goPilotSSOConfig.domain}/oauth/token`, {
     const username = userinfoResponse.data.username
     logging.info(`user email:${username}`);
          ssr._setSessionCookie(req, res, username);
-         return res.redirect('/');
+    return res.redirect(siteURI);
     
   })
   .catch(function (error) {
       console.log(error);
       logging.error('Axios userinfo call error');
-        return res.redirect('/');
+    return res.redirect(siteURI);
   });
   
   })
   .catch(function (error) {
       console.log(error);
       logging.error('Axios token call error');
-     return res.redirect('/');
+    return res.redirect(siteURI);
          });
    } else {
-        res.redirect('/');
+      res.redirect(siteURI);
         }
     }
 }
